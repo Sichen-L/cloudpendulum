@@ -1,0 +1,13 @@
+{
+  "user_token": "",
+  "data_dir": ".",
+  "experiment_type": "DoublePendulum",
+  "cell_id": 203,
+  "tau_max_id": 0.06,
+  "dq_abort": 40.0,
+  "ctrl_hz": 200.0,
+  "inter_run_cooldown": 35.0,
+  "start_retry_max": 4,
+  "fit_data": [],
+  "design_params": ""
+}

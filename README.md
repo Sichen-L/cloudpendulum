@@ -125,6 +125,36 @@ Environment:
 
 ---
 
+## Configuration (`sysid_config.json`)
+
+Every script and notebook reads a local `sysid_config.json`. It is **not committed**
+(it holds your access token). Create it one of two ways:
+
+- Copy the template: `cp sysid_config.example.json sysid_config.json`, then fill in
+  `user_token` (and `cell_id`), **or**
+- Run `python sysid_make_config.py` (reads `CLOUDPENDULUM_TOKEN` from the environment, or
+  an existing config; writes the file with defaults).
+
+Fields (see `sysid_config.example.json`):
+
+| Field | Meaning |
+|---|---|
+| `user_token` | **Your CloudPendulum access token** (secret). Leave `""` to work offline; required before any hardware step. `CLOUDPENDULUM_TOKEN` env var overrides it. |
+| `data_dir` | Where params / references / logs live, relative to the scripts (`"."` = here). |
+| `experiment_type` | `"DoublePendulum"` (both actuators). `"Acrobot"` / `"Pendubot"` restrict torque to the single evaluation-legal joint. |
+| `cell_id` | **Your assigned hardware cell** (device-specific; e.g. `202`, `203`). |
+| `tau_max_id` | Torque cap (Nm) used during system-ID data collection (conservative). |
+| `dq_abort` | Velocity abort threshold (rad/s) during ID collection. |
+| `ctrl_hz` | Control rate (Hz) during ID collection. |
+| `inter_run_cooldown` | Seconds to wait between collection runs so the hardware settles. |
+| `start_retry_max` | Max retries when starting an experiment. |
+| `fit_data` | NPZ filenames used by RUN 3 fitting (empty = pass them on the command line). |
+| `design_params` | Optional path to a nominal-parameter JSON (empty = built-in nominal). |
+
+> The token is never printed in full — the tools mask it as `abc...xyz(len=19)`.
+
+---
+
 ## Repository contents
 
 | File | Role |
