@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+
+# Secret: contains the CloudPendulum user_token — never commit
+sysid_config.json
